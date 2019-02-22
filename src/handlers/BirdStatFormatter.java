@@ -128,7 +128,7 @@ public class BirdStatFormatter {
 				
 				if(!hitData && hitSampleSize && (!token.matches("\\d*\\.?\\d+") && !token.contentEquals("Size:"))) {
 					hitData = true;
-					csvWriter.write("SampleSize\n");
+					csvWriter.write(",SampleSize\n");
 				}
 				
 				if(hitSampleSize && !hitData) {
