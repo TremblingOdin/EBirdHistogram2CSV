@@ -28,7 +28,7 @@ public class BirdStatFormatter {
 	 */
 	public BirdStatFormatter(File birdStatFile, String csvFileName) throws IOException {
 		this.birdStatFile = birdStatFile;
-		File birdCSV = new File(csvFileName);
+		this.birdCSV = new File(csvFileName);
 	
 		if(csvVerify(birdCSV)) {
 		
@@ -42,32 +42,26 @@ public class BirdStatFormatter {
 		}
 	}
 	
-	//These next two I did not realize I needed until last minute when I wanted a way to do this without creating a bunch of objects
 	/**
-	 * Empty Constructor
+	 * Constructor for when the csv file destination is know but stat file is unknown or multipl stat files
+	 * 
+	 * @param csvFileName
+	 * @throws IOException
 	 */
-	public BirdStatFormatter() {
+	public BirdStatFormatter(String csvFileName) throws IOException {
+		this.birdCSV = new File(csvFileName);
 		
+		csvVerify(birdCSV);
 	}
 	
 	/**
-	 * Accepts stat file and target file name, then creates the target file object and gives it to the other format function
+	 * If the CSV file is intended to just be the one assigned to the object then all that needs to be passed is the stat file
 	 * 
 	 * @param statFile
-	 * @param csvFileName
-	 * @return
 	 * @throws IOException
 	 */
-	public boolean format(File statFile, String csvFileName) throws IOException {
-		File csvFile = new File(csvFileName);
-		
-		try {
-			format(statFile, csvFile);
-		} catch (Exception e) {
-			return false;
-		}
-		
-		return true;
+	public void format(File statFile) throws IOException {
+		format(statFile, birdCSV);
 	}
 	
 	//Functions with main/intended functionality of the class
